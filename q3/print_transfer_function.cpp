@@ -25,4 +25,5 @@ int main(int argc, char **argv)
     for(int i=0; i<H.size();i++){
         cout<<omega[i]<<", "<<abs(H[i])<<", "<<arg(H[i])<<endl;
     }
+    //done
 }
