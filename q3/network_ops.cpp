@@ -142,9 +142,10 @@ bool is_composite(const Network &a)
     return !is_primitive(a);
 }
 
-void flatten(char type, const vector<Network> &parts, vector<Network> res){
+void flatten(char type, const vector<Network> &parts)
+{
 
-    for (int i=0; i< parts.size(); i++) {
+    /*for (int i=0; i< parts.size(); i++) {
        if (type == parts[i].type) {
            flatten(type, parts[i].parts, res);
        } else {
@@ -153,19 +154,40 @@ void flatten(char type, const vector<Network> &parts, vector<Network> res){
            res.push_back(parts[i]);
        }
 
-   }
+   }*/
 }
 
-vector<Network> sort(vector<Network> parts) {
-    vector<Network> sorted;
-    sort(parts.begin(), parts.end(), net_vec_compare);
-    return sorted = parts;
+bool is_sorted(vector<Network> a)
+{
+    for(int i=0; i<a.size()-1; i++){
+      if(!(a[i]<a[i+1])){
+        return false;
+      }
+    }
+    return true;
+}
+
+vector<Network> sort_terms(vector<Network> parts)
+{
+  if(is_sorted(parts)){
+    return parts;
+  }else{
+    Network tmp;
+    for(int i=0; i<parts.size()-1; i++){
+      if(!(parts[i] < parts[i+1])){
+        tmp = parts[i+1];
+        parts[i+1] = parts[i];
+        parts[i] = tmp;
+      }
+    }
+    return sort_terms(parts);
+  }
 }
 
 
 Network canonicalise(const Network &x) //TODO:
 {
-    if (is_primitive(x)) {
+    /*if (is_primitive(x)) {
         return x;
     }
 
@@ -175,13 +197,12 @@ Network canonicalise(const Network &x) //TODO:
         parts[i]= canonicalise(parts[i]);
     }
 
-    vector<Network> mod;
-    flatten(x.type, parts, mod);
-    mod = sort(mod);
+    parts = flatten(x.type, parts, );
+    parts = sort_terms(parts);
 
     Network y;
     y.type = x.type;
     y.parts = parts;
 
-    return y;
+    return y;*/
 }

@@ -61,6 +61,9 @@ Network canonicalise(const Network &x);
 
 /* Overload less than operator
 */
+vector<Network> sort_terms(vector<Network> parts);
+
+bool is_sorted(vector<Network> a);
 
 
 

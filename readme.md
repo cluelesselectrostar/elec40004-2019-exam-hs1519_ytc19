@@ -20,9 +20,9 @@ In your final commit you should check exactly two of these
 check-boxes to indicate which questions you have decided
 to answer:
 
-- [ ] : Question 1
+- [x] : Question 1
 - [ ] : Question 2
-- [ ] : Question 3
+- [x] : Question 3
 
 If you do not tick enough boxes, or tick too many, then
 Q1 and Q2 will be marked by default.
@@ -176,7 +176,7 @@ Manual fixes during assessment follow these principles:
 
 1. Manual fixes come with an additive marks penalty; in general, a
    solution that needed no fixes should get higher marks than one than did.
-   
+
 2. Manual fixes will never result in the marks going down - if the marks
    penalty is greater than the additional benefit, then the fix will
    be removed.
@@ -224,7 +224,7 @@ Things that you explicitly can't do are:
 - You should not talk to people outside your team about the exam content, including
   coding, algorithms, debugging, suggestions on approaches, or anything else. While
   you can talk to people during the exam period, potentially including other people
-  from other teams, you should avoid discussing the content of the exam. 
+  from other teams, you should avoid discussing the content of the exam.
 
 - You should not use _active_ sources of information, such as posting new questions
   on stack-overflow, discussing things in forums, asking family members or seniors
@@ -290,7 +290,7 @@ Can I check whether I've understood the question correctly?
 -----------------------------------------------------------
 
 No - just like a normal exam, understanding the question is part of
-the assessment. 
+the assessment.
 
 If there is a genuine ambiguity then you should record this in the
 errata, identifying which question/task/sub-task and the problem.
@@ -315,7 +315,7 @@ mock showed it was technically possible, but it probably isn't
 worth the extra stress.
 
 Based on estimations of the competency/ability of the cohort from
-mid-terms, labs, and so on, there should still be a good spread. 
+mid-terms, labs, and so on, there should still be a good spread.
 Current guess is that the average for the exam might rise to
 65-75% (rather than 50-55%), based on the questions and spread
 of ability seen.
