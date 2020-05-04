@@ -63,7 +63,7 @@ bool operator<(const Network &a, const Network &b) //TODO:
             return a.value < b.value;
         }
     } else if (b.type == '|' && a.type != '|') { // CASE 2a: b must be larger than a
-        return true; 
+        return true;
     } else if (a.type == '|' && b.type != '|') { // CASE 2b: a must be larger than b
         return false;
     }else { //CASE 3: both are parallel or both are series. assume everything inside is primitive.
@@ -154,5 +154,3 @@ Network canonicalise(const Network &x) //TODO:
 
     return y;
 }
-
-
