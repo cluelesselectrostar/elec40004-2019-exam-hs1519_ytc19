@@ -46,7 +46,29 @@ istream &operator>>(istream &src, Network &c)
 
 ostream &operator<<(ostream &dst, const Network &c)
 {
-    // TODO
+    if(c.type == 'C' || c.type == 'R' || c.type == 'L'){
+      dst << c.type << c.value;
+    }else{
+      if(c.type == '&'){
+        dst << "(";
+        for(unsigned i=0; i<c.parts.size(); i++){
+          dst << c.parts[i];
+          if(i<c.parts.size()-1){
+            dst << "&";
+          }
+        }
+        dst << ")";
+      }else if(c.type == '|'){
+        dst << "(";
+        for(unsigned i=0; i<c.parts.size(); i++){
+          dst << c.parts[i];
+          if(i<c.parts.size()-1){
+            dst << "|";
+          }
+        }
+        dst << ")";
+      }
+    }
     return dst;
 }
 
