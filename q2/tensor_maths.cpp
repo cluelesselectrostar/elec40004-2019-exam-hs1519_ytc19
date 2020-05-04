@@ -3,12 +3,12 @@
 
 Tensor *multiply(const Tensor *a, const Tensor *b)
 {
-    // TODO
+    // TODO:
     return create_tensor({1,1});
 }
 
 Tensor *add(const Tensor *a, const Tensor *b)
 {
-    // TODO
+    // TODO:
     return create_tensor({1,1});
 }
