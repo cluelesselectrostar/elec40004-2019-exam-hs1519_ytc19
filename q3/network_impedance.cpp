@@ -1,4 +1,5 @@
 #include "network.hpp"
+#include <cmath>
 
 complex<float> impedance(const Network &c, float omega)
 {
@@ -50,7 +51,23 @@ vector<float> make_log10_space(float xLo, float xHi, int points)
 {
     vector<float> res;
 
-    // TODO:
+    res.push_back(xLo);
+
+    float log_hi = log10(xHi) - log10(xLo);
+    float jumps = log_hi/(points-1);
+    float tmp = log10(xLo);
+    //cerr << jumps << endl;
+
+    if(points>2){
+      for(int i=0; i<points-2; i++){
+        tmp = tmp + jumps;
+        float x = pow(10, tmp);
+        //cerr << x << endl;
+        res.push_back(x);
+      }
+    }
+
+    res.push_back(xHi);
 
     return res;
 }
