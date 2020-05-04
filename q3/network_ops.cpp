@@ -38,12 +38,14 @@ bool operator<(const Network &a, const Network &b) //TODO:
         if (a.value == b.value) {
             if (a.parts.size() == b.parts.size()) {
 
-                if (a.parts.size()==0) {
+                if (a.parts.size()==0) { //b.parts.size has to be zero as well, then equal.
                     return false;
                 }
 
                 for (int i=0; i<a.parts.size(); i++) {
-                    a.parts[i] < b.parts[i]; //recursive comparing between networks.
+                    for (int j=0; j<b.parts.size(); j++) {
+                        a.parts[i]<b.parts[j];
+                    }   
                 }
 
             } else {
