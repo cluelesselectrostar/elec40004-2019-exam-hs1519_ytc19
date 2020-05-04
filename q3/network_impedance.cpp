@@ -17,7 +17,7 @@ vector<complex<float>> transfer_function(const Network &v1, const Network &v2, c
 {
     vector<complex<float>> res;
 
-    // TODO
+    // TODO:
 
     return res;
 }
@@ -26,7 +26,7 @@ vector<float> make_log10_space(float xLo, float xHi, int points)
 {
     vector<float> res;
 
-    // TODO
+    // TODO:
 
     return res;
 }
