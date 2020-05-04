@@ -31,6 +31,7 @@ bool is_primitive(const Network &a);
 bool is_composite(const Network &a);
 
 bool operator==(const Network &a, const Network &b);
+bool operator<(const Network &a, const Network &b);
 
 
 istream &operator>>(istream &src, Network &c);
@@ -57,5 +58,10 @@ vector<Network> create_test_networks();
     standardised canonical form.
 */
 Network canonicalise(const Network &x);
+
+/* Overload less than operator
+*/
+
+
 
 #endif

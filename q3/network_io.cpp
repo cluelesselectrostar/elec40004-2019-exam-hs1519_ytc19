@@ -5,28 +5,31 @@ istream &operator>>(istream &src, Network &c)
     c.value=0;
     c.parts.clear();
 
-    src>>c.type;
+    src >> c.type;
+    //cerr << c.type << endl;
+
     if(src.fail()){
         return src;
     }
 
-    if(c.type=='R' || c.type=='C' || c.type=='L'){
-        src>>c.value;
-    }else if(c.type=='('){
+    if(c.type=='R' || c.type=='C' || c.type=='L'){ //primitives
+        src >> c.value;
+
+    }else if(c.type=='('){  //non-primitive
         c.type=0;
         c.value=0;
 
         Network x;
         char seperator;
-        src>>x>>seperator;
+        src >> x >> seperator; //recursive calling
         assert(!src.fail());
         c.parts.push_back(x);
 
         while(seperator!=')'){
             assert( seperator=='&' || seperator=='|' );
             assert( c.type==0 || c.type==seperator );
-            c.type=seperator;
-            src>>x>>seperator;
+            c.type = seperator;
+            src >> x >> seperator; //recursive calling
             assert(!src.fail());
 
             c.parts.push_back(x);
