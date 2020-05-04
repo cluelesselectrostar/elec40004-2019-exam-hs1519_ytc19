@@ -33,9 +33,21 @@ Network operator&(const Network &a, const Network &b)
     return Network{'&', 0, {a,b} };
 }
 
-bool is_primitive(const Network &a)
+bool is_primitive(const Network &a) //TODO: 
 {
-    return false; // TODO
+    if (a.type != 'R' || a.type !='L' || a.type != 'C') {
+        return false;
+    }
+
+    if (a.value < 0 || a.value == 0) { //non primitive networks have value of 0.
+        return false;
+    }
+
+    if (!a.parts.empty()) {
+        return false;
+    }
+
+    return true; //Only return true for resistors, capacitors or inductors with positive values.
 }
 
 bool is_composite(const Network &a)
@@ -44,7 +56,14 @@ bool is_composite(const Network &a)
 }
 
 
-Network canonicalise(const Network &x)
+Network canonicalise(const Network &x) //TODO:
 {
-    // TODO
+    exit(1);
+}
+
+istream &operator>>(istream &src, Network &c) 
+{
+    while (cin) {
+        
+    }
 }
