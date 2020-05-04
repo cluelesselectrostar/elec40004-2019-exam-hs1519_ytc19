@@ -36,7 +36,12 @@ vector<complex<float>> transfer_function(const Network &v1, const Network &v2, c
 {
     vector<complex<float>> res;
 
-    // TODO:
+    for(int i=0; i<omega.size(); i++){
+      complex<float> imp_v1 = impedance(v1, omega[i]);
+      complex<float> imp_v2 = impedance(v2, omega[i]);
+      complex<float> gain = imp_v2 / (imp_v1 + imp_v2);
+      res.push_back(gain);
+    }
 
     return res;
 }
