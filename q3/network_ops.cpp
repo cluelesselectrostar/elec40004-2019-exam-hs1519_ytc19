@@ -1,5 +1,6 @@
 #include "network.hpp"
 #include <map>
+#include <algorithm>
 
 Network R(float v)
 {
@@ -24,7 +25,7 @@ bool operator==(const Network &a, const Network &b)
     return a.parts == b.parts;
 }
 
-bool net_vec_compare(const Network &a, const Network &b) { //for primitives only
+bool net_vec_compare(const Network &a, const Network &b) { //parameter for sorting networks (not sure if works for |/&)
     map<char,int> weight;
     weight.insert({'&', 1});
     weight.insert({'C', 2});
@@ -106,6 +107,7 @@ bool operator<(const Network &a, const Network &b) //TODO:
         return false;
       }
     }
+
 }
 
 Network operator|(const Network &a, const Network &b)
@@ -140,8 +142,24 @@ bool is_composite(const Network &a)
     return !is_primitive(a);
 }
 
-vector<Network> flatten (char type, vector<Network> parts) {
+void flatten(char type, const vector<Network> &parts, vector<Network> res){
 
+    for (int i=0; i< parts.size(); i++) {
+       if (type == parts[i].type) {
+           flatten(type, parts[i].parts, res);
+       } else {
+           //if not the same type (e.g. type is parallel but part is series, or vice versa)
+           //or if its a primitive.
+           res.push_back(parts[i]);
+       }
+
+   }
+}
+
+vector<Network> sort(vector<Network> parts) {
+    vector<Network> sorted;
+    sort(parts.begin(), parts.end(), net_vec_compare);
+    return sorted = parts;
 }
 
 
@@ -157,8 +175,9 @@ Network canonicalise(const Network &x) //TODO:
         parts[i]= canonicalise(parts[i]);
     }
 
-    parts = flatten(x.type, parts);
-    //parts = sort(parts);
+    vector<Network> mod;
+    flatten(x.type, parts, mod);
+    mod = sort(mod);
 
     Network y;
     y.type = x.type;
