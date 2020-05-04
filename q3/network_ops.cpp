@@ -55,20 +55,56 @@ bool operator<(const Network &a, const Network &b) //TODO:
     weight.insert({'R', 4});
     weight.insert({'|', 5});
 
-    if ( is_primitive(a) && is_primitive(b) ) { //CASE 1: both primitives
+    if( is_primitive(a) && is_primitive(b) ) { //CASE 1: both primitives
         if (a.type != b.type) { // if different type, C<L<R
-            return weight.find(a.type)->second < weight.find(b.type)->second;
+          return weight.find(a.type)->second < weight.find(b.type)->second;
         } else { //if same type, compare value.
-            return a.value < b.value;
+          return a.value < b.value;
         }
-    } else if (b.type == '|' && a.type != '|') { // CASE 2a: b must be larger than a
-        return true;
-    } else if (a.type == '|' && b.type != '|') { // CASE 2b: a must be larger than b
+    }else if(a.type == '&' && is_primitive(b)){ // CASE 2a: b must be larger than a
+      return true;
+    }else if(b.type == '&' && is_primitive(a)){ // CASE 2b: a must be larger than b
+      return false;
+    }else if(a.type == '|' && is_primitive(b)){
+      return false;
+    }else if(b.type == '|' && is_primitive(a)){
+      return true;
+    }else if(a.type == '&' && b.type == '|'){
+      return true;
+    }else if(b.type == '&' && a.type == '|'){
+      return false;
+    }else if(a.type == '&' && b.type == '&'){
+      if(a.parts.size() > b.parts.size()){
+        for(int i=0; i<b.parts.size(); i++){
+          if(a.parts[i] < b.parts[i]){
+            return true;
+          }
+        }
         return false;
-    }else { //CASE 3: both are parallel or both are series. assume everything inside is primitive.
-        sort(a.parts.begin(), a.parts.end(), net_vec_compare);
-        sort(b.parts.begin(), b.parts.end(), net_vec_compare);
-        return (a.parts[0] < b.parts[0]);
+      }else if(a.parts.size() <= b.parts.size()){
+        for(int i=0; i<a.parts.size(); i++){
+          if(a.parts[i] < b.parts[i]){
+            return true;
+          }
+        }
+        return false;
+      }
+    }else if(a.type == '|' && b.type == '|'){
+      if(a.parts.size() > b.parts.size()){
+        for(int i=0; i<b.parts.size(); i++){
+          if(a.parts[i] < b.parts[i]){
+            return true;
+          }
+        }
+        return false;
+      }else if(a.parts.size() <= b.parts.size()){
+        for(int i=0; i<a.parts.size(); i++){
+          if(a.parts[i] < b.parts[i]){
+            return true;
+          }
+        }
+        return false;
+      }
     }
 }
 
