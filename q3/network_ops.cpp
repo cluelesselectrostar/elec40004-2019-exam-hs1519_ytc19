@@ -45,7 +45,7 @@ bool operator<(const Network &a, const Network &b) //TODO:
                 for (int i=0; i<a.parts.size(); i++) {
                     for (int j=0; j<b.parts.size(); j++) {
                         a.parts[i]<b.parts[j];
-                    }   
+                    }
                 }
 
             } else {
@@ -70,9 +70,9 @@ Network operator&(const Network &a, const Network &b)
     return Network{'&', 0, {a,b} };
 }
 
-bool is_primitive(const Network &a) //TODO: 
+bool is_primitive(const Network &a) //TODO:
 {
-    if (a.type != 'R' || a.type !='L' || a.type != 'C') {
+    if (a.type != 'R' && a.type !='L' && a.type != 'C') {
         return false;
     }
 
