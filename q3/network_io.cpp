@@ -85,6 +85,6 @@ vector<Network> create_test_networks()
         {'|',0,{L(1),C(1)}},
         {'&',0,{L(1),C(1)}},
         {'&',0,{R(1),R(2),C(1)}}
-        // TODO Make sure there are at least ten test-cases
+        //: TODO Make sure there are at least ten test-cases
     };
 }

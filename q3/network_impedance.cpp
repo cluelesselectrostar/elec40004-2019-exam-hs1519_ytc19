@@ -3,6 +3,8 @@
 
 complex<float> impedance(const Network &c, float omega)
 {
+  canonicalise(c);
+
     if(c.type == 'R'){
       return {c.value, 0};
 
@@ -11,7 +13,7 @@ complex<float> impedance(const Network &c, float omega)
 
     }else if(c.type == 'L'){
       return {0, omega*c.value};
-    }else if(c.type == '&'){
+    }else if(c.type == '&'){ //series
       complex<float> tmp = {0, 0};
       for(int i=0; i<c.parts.size(); i=i+1){
         complex<float> imp = impedance(c.parts[i], omega);
@@ -19,7 +21,7 @@ complex<float> impedance(const Network &c, float omega)
         //cerr << "The value of imp is: " << i << imp << endl;
       }
       return tmp;
-    }else if(c.type == '|'){
+    }else if(c.type == '|'){ //parallel
       complex<float> tmp = {0, 0};
       complex<float> one = {1, 0};
       for(int i=0; i<c.parts.size(); i++){
@@ -35,6 +37,9 @@ complex<float> impedance(const Network &c, float omega)
 
 vector<complex<float>> transfer_function(const Network &v1, const Network &v2, const vector<float> &omega)
 {
+   //canonicalise(v1);
+    //canonicalise(v2);
+    
     vector<complex<float>> res;
 
     for(int i=0; i<omega.size(); i++){

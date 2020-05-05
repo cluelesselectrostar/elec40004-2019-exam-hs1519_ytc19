@@ -25,7 +25,7 @@ bool operator==(const Network &a, const Network &b)
     return a.parts == b.parts;
 }
 
-bool net_vec_compare(const Network &a, const Network &b) { //parameter for sorting networks (not sure if works for |/&)
+bool net_vec_compare(const Network &a, const Network &b) { // abandoned parameter for sorting primitive networks (not sure if works for |/&)
     map<char,int> weight;
     weight.insert({'&', 1});
     weight.insert({'C', 2});
@@ -62,19 +62,19 @@ bool operator<(const Network &a, const Network &b) //TODO:
         } else { //if same type, compare value.
           return a.value < b.value;
         }
-    }else if(a.type == '&' && is_primitive(b)){ // CASE 2a: b must be larger than a
+    }else if(a.type == '&' && is_primitive(b)){ // CASE 2a: any primitive must be larger than series
       return true;
-    }else if(b.type == '&' && is_primitive(a)){ // CASE 2b: a must be larger than b
+    }else if(b.type == '&' && is_primitive(a)){ // CASE 2b: any primitive must be larger than series (opposite of 2b)
       return false;
-    }else if(a.type == '|' && is_primitive(b)){
+    }else if(a.type == '|' && is_primitive(b)){ // CASE 3a: any parallel must be larger than primitives
       return false;
-    }else if(b.type == '|' && is_primitive(a)){
+    }else if(b.type == '|' && is_primitive(a)){ // CASE 3b: any parallel must be larger than primitives (opposite of 3a)
       return true;
-    }else if(a.type == '&' && b.type == '|'){
+    }else if(a.type == '&' && b.type == '|'){ // CASE 4a: any parallel must be larger than series
       return true;
-    }else if(b.type == '&' && a.type == '|'){
+    }else if(b.type == '&' && a.type == '|'){ // CASE 4b: any parallel must be larger than series (opposite of 4a)
       return false;
-    }else if(a.type == '&' && b.type == '&'){
+    }else if(a.type == '&' && b.type == '&'){ // CASE 5a: both series
       if(a.parts.size() > b.parts.size()){
         for(int i=0; i<b.parts.size(); i++){
           if(a.parts[i] < b.parts[i]){
@@ -90,7 +90,7 @@ bool operator<(const Network &a, const Network &b) //TODO:
         }
         return false;
       }
-    }else if(a.type == '|' && b.type == '|'){
+    }else if(a.type == '|' && b.type == '|'){ // CASE 5b: both parallel (code same as 5a)
       if(a.parts.size() > b.parts.size()){
         for(int i=0; i<b.parts.size(); i++){
           if(a.parts[i] < b.parts[i]){
@@ -143,7 +143,7 @@ bool is_composite(const Network &a)
 }
 
 void flatten(char type, vector<Network> &a)
-{
+{   
     for (int i=0; i< a.size(); i++){
       if (type == a[i].type) {
         Network tmp = a[i];
@@ -151,7 +151,7 @@ void flatten(char type, vector<Network> &a)
         for(int j=0; j<tmp.parts.size(); j++)
           a.insert(a.begin()+i, tmp.parts[j]);
         }
-    }
+    }  
 }
 
 bool is_sorted(vector<Network> a)
@@ -171,7 +171,7 @@ vector<Network> sort_terms(vector<Network> parts)
   }else{
     Network tmp;
     for(int i=0; i<parts.size()-1; i++){
-      if(!(parts[i] < parts[i+1])){
+      if(!(parts[i] < parts[i+1])){ //if next part larger than current part, exchange parts
         tmp = parts[i+1];
         parts[i+1] = parts[i];
         parts[i] = tmp;
@@ -184,7 +184,7 @@ vector<Network> sort_terms(vector<Network> parts)
 
 Network canonicalise(const Network &x) //TODO:
 {
-    if (is_primitive(x)) {
+    if (is_primitive(x)) { //do not attempt to canonicalise primitive networks.
         return x;
     }
 
@@ -200,6 +200,7 @@ Network canonicalise(const Network &x) //TODO:
     Network y;
     y.type = x.type;
     y.parts = parts;
+    y.value = 0;
 
     return y;
 }
