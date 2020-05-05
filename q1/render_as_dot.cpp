@@ -7,8 +7,8 @@ void render(const tree_node *r) {
     string label;
 
     if (r == nullptr) {
-        return; 
-    } 
+        return;
+    }
 
     if (r->left != nullptr) {
         cout << "\"" << r->value << "\" -> \"" << r->left->value << "\" [label=\"L\"]" << endl ;
@@ -17,7 +17,7 @@ void render(const tree_node *r) {
     if (r->right !=nullptr) {
         cout << "\"" << r->value << "\" -> \"" << r->right->value << "\" [label=\"R\"]" << endl ;
     }
-    
+
     render(r->left);
     render(r->right);
 }

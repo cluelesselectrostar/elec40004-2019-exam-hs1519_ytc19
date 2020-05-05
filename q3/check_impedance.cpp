@@ -3,6 +3,7 @@
 
 int main () {
 
+    /*
     R(1);
     C(1);
     L(1);
@@ -33,6 +34,17 @@ int main () {
 
     complex<float> LC_par_imp = impedance(LC_par, omega);
     cout << LC_par_imp.real() << " " << LC_par_imp.imag() <<"j" << endl;
+    */
+
+    Network R1_3 = {'R', 1.3, {}};
+    Network C1_2 = {'C', 1.2, {}};
+    Network L2 = {'L', 2, {}};
+    Network L0_5 = {'L', 0.5, {}};
+    Network R5 = {'R', 5, {}};
+    Network C3 = {'C', 3, {}};
+
+    Network subcom = {'|', 0, {R1_3, C1_2}};
+    Network comb = {'|', 0, {subcom, L2, L0_5}};
 
 
 }

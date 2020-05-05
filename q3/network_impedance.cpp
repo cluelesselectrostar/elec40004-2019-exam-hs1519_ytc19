@@ -3,7 +3,7 @@
 
 complex<float> impedance(const Network &c, float omega)
 {
-  canonicalise(c);
+  //canonicalise(c);
 
     if(c.type == 'R'){
       return {c.value, 0};
@@ -37,8 +37,8 @@ complex<float> impedance(const Network &c, float omega)
 
 vector<complex<float>> transfer_function(const Network &v1, const Network &v2, const vector<float> &omega)
 {
-   //canonicalise(v1);
-    //canonicalise(v2);
+  //canonicalise(v1);
+  //canonicalise(v2);
     
     vector<complex<float>> res;
 

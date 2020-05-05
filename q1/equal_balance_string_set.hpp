@@ -6,12 +6,12 @@
 class EqualBalanceStringSet
     : public StringSet
 {
-    protected:
+protected:
     tree_node *m_root;
     int m_size;
     int m_added;
 
-  public:
+public:
     EqualBalanceStringSet()
     {
         m_root=nullptr;
@@ -39,7 +39,7 @@ class EqualBalanceStringSet
         return tree_contains(m_root, x);
     }
 
-    virtual void optimise()
+    void optimise() override
     {
         tree_rebuild_balanced(m_root);
     }
