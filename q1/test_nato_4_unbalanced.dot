@@ -1,0 +1,5 @@
+digraph G { 
+"alpha" -> "bravo" [label="R"]
+"bravo" -> "charlie" [label="R"]
+"charlie" -> "delta" [label="R"]
+}
