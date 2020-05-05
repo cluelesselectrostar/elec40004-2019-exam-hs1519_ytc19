@@ -11,7 +11,7 @@ protected:
     int m_size;
     int m_added;
 
-  public:
+public:
     UnbalancedStringSet()
     {
         m_root=nullptr;
