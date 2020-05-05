@@ -6,7 +6,7 @@
 class EqualBalanceStringSet
     : public StringSet
 {
-protected:
+    protected:
     tree_node *m_root;
     int m_size;
     int m_added;
