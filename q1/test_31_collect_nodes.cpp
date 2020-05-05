@@ -21,4 +21,5 @@ int main()
     tree_node tmp = *tre[i];
     cout << tmp.value << endl;
   }
+
 }
