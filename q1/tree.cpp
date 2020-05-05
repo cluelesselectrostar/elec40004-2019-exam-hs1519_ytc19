@@ -22,13 +22,13 @@ int tree_size(const tree_node *node)
 
 int tree_height(const tree_node *node)
 {
-    // TODO
+    // TODO:
     return 0;
 }
 
 float tree_balance(const tree_node *node)
 {
-    // TODO
+    // TODO:
     return 0;
 }
 
@@ -110,7 +110,7 @@ void tree_collect_nodes(vector<tree_node*> &nodes, tree_node *root)
 
 void tree_collect_nodes_in_order(vector<tree_node*> &nodes, tree_node *root)
 {
-    // TODO
+    // TODO:
 }
 
 bool are_nodes_ordered(const vector<tree_node*> &nodes)

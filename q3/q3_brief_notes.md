@@ -57,6 +57,7 @@ Log
 17:00-17:45 Read through all questions
 17:50 Decided to work on questions 3 and 1.
 18:10-18:22 Discussed about question 3. Divided workload. Start working.
+20:00-21:00 Dinner
 
 Day 2
 - Refining canonicalise
