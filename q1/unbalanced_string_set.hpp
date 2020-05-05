@@ -6,7 +6,7 @@
 class UnbalancedStringSet
     : public StringSet
 {
-  private:
+protected:
     tree_node *m_root;
     int m_size;
     int m_added;
