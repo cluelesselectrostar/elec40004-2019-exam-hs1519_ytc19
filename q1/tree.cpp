@@ -1,6 +1,7 @@
 #include "tree.hpp"
 
 #include <stack>
+#include <cmath>
 
 void tree_free(tree_node *root)
 {
@@ -36,10 +37,15 @@ int tree_height(const tree_node *node) //height is distance to bottom-most node.
     return max(l_height, r_height);
 }
 
-float tree_balance(const tree_node *node)
+float tree_balance(const tree_node *node) //TODO:  b = ( h / h_opt - 1 ) / ( n / h_opt - 1 ),
 {
-    // TODO:
-    return 0;
+    int n = tree_size(node);
+    int h = tree_height(node);
+    int h_opt = ceil(log2(n+1));
+
+    float b = (h/h_opt-1)/(n/h_opt-1);
+
+    return b;
 }
 
 bool tree_contains(const tree_node *root, const string &value)
