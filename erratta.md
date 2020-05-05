@@ -6,3 +6,7 @@
 
 ### Q3/Description of Tree nodes
 The underlying data primitive used in this question is tree_node, which is defined in `tree.hpp`
+
+### Q1/Measuring Tree balance
+For h=5, b should be 0.167; for h=3, b should be -0.167 (negative as expected, since you can't really achieve 
+tree height less than optimal height 4)
