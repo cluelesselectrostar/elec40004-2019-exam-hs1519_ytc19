@@ -22,7 +22,7 @@ int tree_size(const tree_node *node)
 }
 
 int tree_height(const tree_node *node) //height is distance to bottom-most node.
-{   
+{
     if (node == nullptr) {
         return 0;
     }
@@ -167,10 +167,12 @@ tree_node *tree_rebuild_balanced(vector<tree_node*> &nodes, int begin, int end)
 
     int mid=(begin+end)/2;
     assert(begin<=mid && mid<end);
+    //cerr << "Middle index: " << mid << endl;
 
     tree_node *root=nodes[mid];
     root->left = tree_rebuild_balanced(nodes, begin, mid);
     root->right = tree_rebuild_balanced(nodes, mid+1, end);
+    //already working???
 }
 
 tree_node *tree_rebuild_balanced(tree_node *root)

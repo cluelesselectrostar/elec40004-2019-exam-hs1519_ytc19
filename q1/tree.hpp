@@ -59,4 +59,6 @@ tree_node *tree_rebuild_random(tree_node *root, mt19937 &rng);
 // Rebuild tree by extracing in-order nodes then reconstructing a balanced tree
 tree_node *tree_rebuild_balanced(tree_node *root);
 
+tree_node *tree_rebuild_balanced(vector<tree_node*> &nodes, int begin, int end);
+
 #endif
