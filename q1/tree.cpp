@@ -110,7 +110,11 @@ void tree_collect_nodes(vector<tree_node*> &nodes, tree_node *root)
 
 void tree_collect_nodes_in_order(vector<tree_node*> &nodes, tree_node *root)
 {
-    // TODO:
+    if(root != nullptr){
+      tree_collect_nodes_in_order(nodes, root->left);
+      nodes.push_back(root);
+      tree_collect_nodes_in_order(nodes, root->right);
+    }
 }
 
 bool are_nodes_ordered(const vector<tree_node*> &nodes)
