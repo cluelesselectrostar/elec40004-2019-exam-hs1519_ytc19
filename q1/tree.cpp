@@ -20,10 +20,20 @@ int tree_size(const tree_node *node)
     }
 }
 
-int tree_height(const tree_node *node)
-{
-    // TODO:
-    return 0;
+int tree_height(const tree_node *node) //height is distance to bottom-most node.
+{   
+    if (node == nullptr) {
+        return 0;
+    }
+    
+    if ((node->left == nullptr)&&(node->right == nullptr)) {
+        return 0;
+    }
+
+    int l_height = tree_height(node->left) + 1;
+    int r_height = tree_height(node->right) + 1;
+
+    return max(l_height, r_height);
 }
 
 float tree_balance(const tree_node *node)
