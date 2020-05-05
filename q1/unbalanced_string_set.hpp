@@ -3,13 +3,15 @@
 
 #include "string_set.hpp"
 
-struct UnbalancedStringSet
+class UnbalancedStringSet
     : public StringSet
 {
+  private:
     tree_node *m_root;
     int m_size;
     int m_added;
 
+  public:
     UnbalancedStringSet()
     {
         m_root=nullptr;
