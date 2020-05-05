@@ -142,19 +142,16 @@ bool is_composite(const Network &a)
     return !is_primitive(a);
 }
 
-void flatten(char type, const vector<Network> &parts)
+void flatten(char type, vector<Network> &a)
 {
-
-    /*for (int i=0; i< parts.size(); i++) {
-       if (type == parts[i].type) {
-           flatten(type, parts[i].parts, res);
-       } else {
-           //if not the same type (e.g. type is parallel but part is series, or vice versa)
-           //or if its a primitive.
-           res.push_back(parts[i]);
-       }
-
-   }*/
+    for (int i=0; i< a.size(); i++){
+      if (type == a[i].type) {
+        Network tmp = a[i];
+        a.erase(a.begin()+i);
+        for(int j=0; j<tmp.parts.size(); j++)
+          a.insert(a.begin()+i, tmp.parts[j]);
+        }
+    }
 }
 
 bool is_sorted(vector<Network> a)
@@ -187,7 +184,7 @@ vector<Network> sort_terms(vector<Network> parts)
 
 Network canonicalise(const Network &x) //TODO:
 {
-    /*if (is_primitive(x)) {
+    if (is_primitive(x)) {
         return x;
     }
 
@@ -197,12 +194,12 @@ Network canonicalise(const Network &x) //TODO:
         parts[i]= canonicalise(parts[i]);
     }
 
-    parts = flatten(x.type, parts, );
+    flatten(x.type, parts);
     parts = sort_terms(parts);
 
     Network y;
     y.type = x.type;
     y.parts = parts;
 
-    return y;*/
+    return y;
 }
