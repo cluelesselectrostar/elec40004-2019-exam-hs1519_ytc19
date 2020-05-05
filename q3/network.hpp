@@ -65,6 +65,8 @@ vector<Network> sort_terms(vector<Network> parts);
 
 bool is_sorted(vector<Network> a);
 
+void flatten(char type, vector<Network> &a);
+
 
 
 #endif
