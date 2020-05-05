@@ -1,6 +1,7 @@
 #include "string_set.hpp"
 #include "unbalanced_string_set.hpp"
 #include "random_balance_string_set.hpp"
+#include "equal_balance_string_set.hpp"
 
 StringSet *create_string_set(const string &name)
 {
